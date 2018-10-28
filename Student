@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Student {
+	protected static Student [] students= new Student[20];//array to store the Students
+	private static int count; //count created objects
+	
+	private static Scanner scanner= new Scanner (System.in); 
+	
+	private String name;
+	private String email;
+	private String address;
+	private int age;
+	private boolean status;
+	private int id;
+
+	public Student(String name, String email, String address, int age, boolean status) {
+		this.name = name;
+		this.email = email;
+		this.address = address;
+		this.age = age;
+		this.status = status;
+		students[count]=this;//add object to the array
+		count++;//increase the number of created students	
+		id=count;//assign the current value of the static variable count to the id
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	//search Students by name
+	public static Student searchStudent(String name) {
+		for(int i=0;i<students.length; i++){//search the students array
+			if (students[i]!=null){
+				if(students[i].name.equals(name)){
+					return students[i];//return student
+				}						
+			}
+		}
+		return null;//no student was not found the given name
+	}
+
+	@Override
+	public String toString() {
+		return "name=" + name ;
+	}
+	
+}
