@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Admin{
+	
+	private static Scanner scanner= new Scanner (System.in); 
+
+	
+	public void getMenu() {// admin's menu
+		while(true){//the menu will not break
+			System.out.println("\n\n------ Admin View ------");
+			System.out.println("Press 1 to add a student");
+			System.out.println("Press 2 to delete a student");
+			System.out.println("Press 3 to change a student's status");
+			System.out.println("Press 4 to cancel a student's class");
+			int choice =scanner.nextInt();
+			if (choice==1){
+				addStudent();
+			}else if (choice==2) {
+				deleteStudent();
+			}else if (choice==3) {
+				changeStudentStatus();
+			}else if (choice==4) {
+				cancelStudentClass();
+			}	
+		}
+	}
+}
