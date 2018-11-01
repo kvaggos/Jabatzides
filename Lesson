@@ -3,12 +3,14 @@ public class Lesson {
 String Name;
 Double Grade;
 int Quarter;
+int ff;
 
  public Lesson(String Name, Double Grade, int Quarter) {
 
  this.Name = Name;
  this.Grade = Grade;
  this.Quarter = Quarter;
+ 
 
  }
 
