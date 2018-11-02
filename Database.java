@@ -17,7 +17,7 @@
 	if 	(x == 1){
 		createTable();
 		 }else if (x == 2){
-			//addAttr();
+			addAttr();
 		}else if (x == 3){
 			viewTable();
 		}else if (x == 4){
@@ -26,7 +26,7 @@
 			modifyAttr();
 		}else if (x == 6){
 			endcheck = false;
-		//}
+		}
 	}
 	}
 }
