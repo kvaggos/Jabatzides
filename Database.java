@@ -11,22 +11,22 @@
 
 	while(endcheck){
 
-	getMenu();
+	getMenu();	// call menu method
 	int x = sc.nextInt();
 
 
 	if 	(x == 1){
 		createTable();
-		// }else if (x == 2){
+		 }else if (x == 2){
 			//addAttr();
-		//}else if (x == 3){
-		//	viewTable();
-		//}else if (x == 4){
-		//	deleteAttr();
-		//}else if (x == 5){
-		//	modifyAttr();
-	//	}else if (x == 6){
-	//		endcheck = false;
+		}else if (x == 3){
+			viewTable();
+		}else if (x == 4){
+			deleteAttr();
+		}else if (x == 5){
+			modifyAttr();
+		}else if (x == 6){
+			endcheck = false;
 		//}
 	}
 	}
@@ -47,53 +47,53 @@
 
 			boolean checkexistingtable = true; // checks if the table name is available
 			Scanner sc = new Scanner(System.in);
-			Table tableobj = null;
+			Table tableobj = null; //creating Table type object
 			String name;
 
-			while(checkexistingtable){
+			while(checkexistingtable){ //while checkeistingtable = true
 
 				System.out.println("Give table name");
-				name = sc.nextLine();
+				name = sc.nextLine();	//read the table's name
 
-				if (tableobj.listoftables.contains(new Table(name))){
-					checkexistingtable = true;
+				if (tableobj.listoftables.contains(new Table(name))){ //checks if table names exists already
+					checkexistingtable = true; // make again the loop
 					}else{
-						 tableobj = new Table(name);
-						 tableobj.addTolistoftables();
-						 checkexistingtable = false;
+						 tableobj = new Table(name); //the given name becomes a table name
+						 tableobj.addTolistoftables();	//add the table to the list of tables
+						 checkexistingtable = false; // end the loop
 					}
 			}
 
 
-				boolean check1 = true;
-				boolean check2 = true;
+				boolean check1 = true; // checks if you want to stop adding rows and values
+				boolean check2 = true; // checks if you want to change row
 
 
 				while(check1){
 
 				System.out.println("Give row name");
 				String rowname = sc.nextLine();
-				Object value;
+				Object value; // takes every kind of a variable's type
 
-				ArrayList <Object> list = new ArrayList <Object>();
+				ArrayList <Object> list = new ArrayList <Object>(); //list that contains the values of a row
 					check2 = true;
-					while(check2){
+					while(check2){ // while in this loop, values are added to a row
 
 					System.out.println("Give input");
 					System.out.println("To end type: stop");
 					System.out.println("To change row type: change");
 					value = sc.nextLine();
-					if( value.equals("change")){
+					if( value.equals("change")){ //change row
 						check2 = false;
-					}else if( value.equals("stop")){
+					}else if( value.equals("stop")){ // stop adding rows and values to the table
 								check2 = false;
 								check1 = false;
 						}else{
-					 list.add(value);
+					 list.add(value); // add the given value to the list of values
 						}
 
 					}
-					tableobj.table.put(rowname, list);
+					tableobj.table.put(rowname, list); // save the rows and the lists(value's of every row) to TreeMap
 				}
 		}
  }
