@@ -89,18 +89,17 @@ public class Table{
 
             public void addElements() {
                  boolean check1 = true; // checks if you want to stop adding rows and values
-			     boolean check2 = true; // checks if you want to change row
-                LinkedList <Object> list = new LinkedList <Object>(); //list that contains the values of a row
+		 boolean check2 = true; // checks if you want to change row
+                 LinkedList <Object> list = new LinkedList <Object>(); //list that contains the values of a row
                  while(check1)  {
 
 	  				System.out.println("Give column name");
 	  				String rowname = sc.nextLine();
 	  				Object value; // takes every kind of a variable's type
 
-
 	  					check2 = true;
 	  					System.out.println("Give input");
-							  					System.out.println("To end type: stop");
+						System.out.println("To end type: stop");
 	  					System.out.println("To change row type: change");
 	  					while(check2){ // while in this loop, values are added to a row
 
@@ -108,8 +107,8 @@ public class Table{
 	  					  if( value.equals("change")){ //change row
 	  						check2 = false;
 	  					  }else if( value.equals("stop")){ // stop adding rows and values to the table
-	  								check2 = false;
-	  								check1 = false;
+	  							check2 = false;
+	  							check1 = false;
 	  						    }else{
 	  					          list.add(value); // add the given value to the list of values
 	  						    }
