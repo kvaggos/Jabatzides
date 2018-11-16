@@ -1,0 +1,23 @@
+	public static void addAtt2Table() {
+
+		Table myTable = new Table(); //creating Table type object
+
+		myTable = myTable.searchTable();
+
+		if (myTable == null) {
+			return;
+		}
+
+		Scanner s2 = new Scanner(System.in);
+		String resp="o";
+		while(!(resp.equals("x"))) {
+			System.out.println("Add Rows (r) or Columns (c). Enter (x) to exit");
+			resp = s2.nextLine();
+			if (resp.equals("r")) {
+				myTable.addRows();
+			} else if (resp.equals("c")) {
+				myTable.addElements();
+			}
+		}
+
+	}
