@@ -7,6 +7,8 @@ public class Table{
      static HashMap<String, Table> listoftables  = new HashMap<String, Table>();
 	 HashMap<String, LinkedList<Object> > table = new HashMap<String, LinkedList<Object>>(); //TreeMap that contains the rows and the values of every table
 	 Scanner sc = new Scanner(System.in);
+	
+	public Table() {}
 
 	public Table(String name){ //constructor
 		this.name = name;
