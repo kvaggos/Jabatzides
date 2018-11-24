@@ -1,6 +1,6 @@
 	public static void addAtt2Table() {
 
-		Table myTable = new Table(); //creating Table type object
+	Table myTable = new Table(); //creating Table type object
 
 		myTable = myTable.searchTable();
 
