@@ -1,13 +1,18 @@
-import java.util.*;
+ import java.util.*;
+ import java.io.*;
+ import java.util.Scanner;
+
 
   public class Database{
 
- 	static Scanner sc = new Scanner(System.in);
+ 	  static Scanner sc = new Scanner(System.in);
 
  	public static void main(String[]args){
 
  	boolean endcheck = true; // if false programm ends
 
+
+    System.out.println("****Welcome to our DATABASE****");
  	while(endcheck){
 
  	getMenu();	// call menu method
@@ -17,22 +22,24 @@ import java.util.*;
  	if 	(x == 1){
  		createTable();
  		 }else if (x == 2){
- 			//addAttr();
+ 			addAtt2Table();
  		}else if (x == 3){
  			viewTable();
  		}else if (x == 4){
- 			deleteAttr();
+ 			//deleteAttr();
  		}else if (x == 5){
- 			modifyAttr();
+ 			//modifyAttr();
  		}else if (x == 6){
  			endcheck = false;
- 		//}
+ 			System.out.println("Thank you for using our Database");
+ 		} else {
+		 System.out.println("Invalid entry. Please select a number from 1-5 or input 6 to end the program.");
  	}
  	}
  }
 
  		public static void getMenu(){
- 			System.out.println("****Welcome to our DATABASE****");
+
  			System.out.println("    Make a choice: ");
  			System.out.println("1. Create new table ");
  			System.out.println("2. Add attributes to a table ");
@@ -46,7 +53,7 @@ import java.util.*;
 
  			boolean checkexistingtable = true; // checks if the table name is available
  			Scanner sc = new Scanner(System.in);
- 			Table tableobj = null; //creating Table type object
+ 			Table tableobj = new Table(); //creating Table type object
  			String name;
 
  			while(checkexistingtable){ //while checkeistingtable = true
@@ -54,45 +61,72 @@ import java.util.*;
  				System.out.println("Give table name");
  				name = sc.nextLine();	//read the table's name
 
- 				if (tableobj.getTable(name) == null){ //checks if table names exists already
+ 				if (tableobj.getTable(name) != null){ //checks if table names exists already
  					checkexistingtable = true; // make again the loop
+ 					System.out.println("Table already exists");
  					}else{
  						 tableobj = new Table(name); //the given name becomes a table name
- 						 tableobj.setTable(name);	//add the table to the list of tables
+ 						 tableobj.setTable(name); //add the table to the list of tables
+
  						 checkexistingtable = false; // end the loop
  					}
  			}
 
-
- 				boolean check1 = true; // checks if you want to stop adding rows and values
- 				boolean check2 = true; // checks if you want to change row
+        tableobj.createTableCols();
 
 
- 				while(check1){
+	}
 
- 				System.out.println("Give row name");
- 				String rowname = sc.nextLine();
- 				Object value; // takes every kind of a variable's type
 
- 				LinkedList <Object> list = new LinkedList <Object>(); //list that contains the values of a row
- 					check2 = true;
- 					while(check2){ // while in this loop, values are added to a row
+	public static void addAtt2Table() {
 
- 					System.out.println("Give input");
- 					System.out.println("To end type: stop");
- 					System.out.println("To change row type: change");
- 					value = sc.nextLine();
- 					if( value.equals("change")){ //change row
- 						check2 = false;
- 					}else if( value.equals("stop")){ // stop adding rows and values to the table
- 								check2 = false;
- 								check1 = false;
- 						}else{
- 					 list.add(value); // add the given value to the list of values
- 						}
+		Table myTable = new Table(); //creating Table type object
 
- 					}
- 					tableobj.putValues(rowname, list); // save the rows and the lists(value's of every row) to TreeMap
- 				}
- 		}
-  }
+		myTable = myTable.searchTable();
+
+		if (myTable == null) {
+			return;
+		}
+
+		Scanner s2 = new Scanner(System.in);
+		String resp="o";
+		while(!(resp.equals("x"))) {
+			System.out.println("Add rows (h) or new Columns (c). Enter (x) to exit");
+			resp = s2.nextLine();
+			if (resp.equals("c")) {
+				myTable.createTableCols();
+			} else if (resp.equals("h")) {
+				myTable.addRows();
+			} else {
+				System.out.println("Invalid entry: Enter (h), (c) or (x) to exit");
+			}
+		}
+
+	}
+
+	public static void viewTable() {
+			        Scanner s2 = new Scanner(System.in);
+	                String resp="";
+					Table myTable = new Table(); //creating Table type object
+
+					myTable = myTable.searchTable();
+
+					if (myTable == null) {
+							return;
+					}
+					System.out.println("What would you like to do?");
+					System.out.println("a.View whole Table");
+					System.out.println("b.Custom view Table");
+
+					resp = s2.nextLine();
+					if(resp.equals("a")) {
+						myTable.viewWholeTable();
+				}
+
+
+
+
+	}
+}
+
+ 
