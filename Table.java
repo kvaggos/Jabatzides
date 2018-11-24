@@ -7,13 +7,15 @@ public class Table {
 	String name;
 	Scanner sc = new Scanner(System.in);
 
+
      Map<String, String> ColTypes = new HashMap<String, String>();
      static HashMap<String, Table> listoftables  = new HashMap<String, Table>();
 	 Map<String, LinkedList<String> > table = new LinkedHashMap<String, LinkedList<String>>(); //TreeMap that contains the rows and the values of every table
 
 
-	public Table(String name){ //constructor
+	public Table(String name) { // constructor
 		this.name = name;
+
     }
 
     public Table() {}
@@ -114,7 +116,7 @@ public class Table {
 	}
 
 
-
+		
 	public void setTable(String name) {
 		listoftables.put(name, this);
    }
@@ -127,19 +129,15 @@ public class Table {
      }
 }
 
+	public boolean equals(Object o) { // override the equals method
 
-	//public void addTolistoftables() { //add this table to the list of tables
-		//listoftables.add(this);
-//}
-
-      public boolean equals(Object o) { // override the equals method
-
-        if (o == this) return true;
-        if (!(o instanceof Table)) {
-            return false;
-        }
-        Table table = (Table) o;
-        return table.name.equals(name);
+		if (o == this)
+			return true;
+		if (!(o instanceof Table)) {
+			return false;
+		}
+		Table table = (Table) o;
+		return table.name.equals(name);
 	}
 
 
@@ -170,4 +168,4 @@ public class Table {
 			}
 
 
-}
+

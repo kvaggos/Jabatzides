@@ -3,6 +3,7 @@
  import java.util.Scanner;
 
 
+
   public class Database{
 
  	  static Scanner sc = new Scanner(System.in);
@@ -82,6 +83,7 @@
 
 		Table myTable = new Table(); //creating Table type object
 
+
 		myTable = myTable.searchTable();
 
 		if (myTable == null) {
@@ -89,6 +91,7 @@
 		}
 
 		Scanner s2 = new Scanner(System.in);
+
 		String resp="o";
 		while(!(resp.equals("x"))) {
 			System.out.println("Add rows (h) or new Columns (c). Enter (x) to exit");
@@ -130,3 +133,4 @@
 }
 
  
+
