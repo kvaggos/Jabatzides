@@ -50,6 +50,23 @@ public class Table {
     	}
     	
     }
+    
+    public void renameTable(String oldname, String newname) {
+    	
+    	Table temporarystore = listoftables.get(oldname);
+    	deleteWholeTable(oldname);
+    	listoftables.put(newname, temporarystore);
+    	
+    }
+  
+    public void renameColumn(String oldname, String newname) {
+  	
+    	LinkedList<String> temporarystore = table.get(oldname);	
+    	table.remove(oldname);	
+  		table.put(newname, temporarystore);
+  	
+    }
+  
 	      public void createTableCols() {
                  boolean check1 = true; // checks if you want to stop adding rows and values
 			     boolean check2 = true; // checks if you want to change row
@@ -193,3 +210,6 @@ public class Table {
 			}
 
 }
+
+
+
