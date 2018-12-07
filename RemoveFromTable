@@ -4,23 +4,24 @@ import java.util.Scanner;
 
 
 class RemoveFromTable {
-
+	
+	public RemoveFromTable() {
+		
+	}
+	
 	Scanner sc = new Scanner(System.in);
 	Table table = null;
 	
 	public void deleteTable(Table table){
 		
-		Table.listoftables.remove(table.name);
+		table.deleteWholeTable(table.name);
 		System.out.println("Table with name: "+ table.name +", has been removed");
 		
 		}
 
 	public void clearTable(Table table){
 
-		for (String key : table.table.keySet()) {	
-			table.table.remove(key);
-			
-			}	
+		table.clearValues(table.name);
 		System.out.println("Table with name: "+ table.name +", is empty now");
 		}
 
@@ -29,8 +30,7 @@ class RemoveFromTable {
 		System.out.println("Give the name of the column you want to delete");
 		String colname = sc.nextLine();
 		
-		if (table.table.containsKey(colname)) {
-			table.table.remove(colname);
+		if (table.isColumnDeleted(colname)) {
 			System.out.println("Table with name: "+ table.name +", has been removed");
 			} else {
 				System.out.println("Column with name:" + colname + " does not exist");
