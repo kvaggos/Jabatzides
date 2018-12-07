@@ -28,9 +28,9 @@ public class Table {
     public void clearValues(String name) {
 
     	for (String key : table.keySet()) {	
-			table.remove(key);
+	         table.get(key).clear();
 			
-    		}
+    	}
     	
     }
     
