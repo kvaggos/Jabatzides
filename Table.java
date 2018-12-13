@@ -5,7 +5,7 @@ import java.util.regex.*;
 public class Table {
 
 	String name;
-	Scanner sc = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
 
 
      Map<String, String> ColTypes = new HashMap<String, String>();
@@ -25,6 +25,48 @@ public class Table {
 	   table.put(rowname, values);
 	}
 
+    public void clearValues(String name) {
+
+    	for (String key : table.keySet()) {	
+	         table.get(key).clear();
+			
+    	}
+    	
+    }
+    
+    public void deleteWholeTable(String name) {
+
+    	listoftables.remove(name);
+    	
+    }
+    
+    public boolean isColumnDeleted(String colname) {
+
+    	if (table.containsKey(colname)) {
+			table.remove(colname);
+			return true;
+    	} else {
+    		return false;
+    	}
+    	
+    }
+    
+    public void renameTable(String oldname, String newname) {
+    	
+    	Table temporarystore = listoftables.get(oldname);
+    	deleteWholeTable(oldname);
+    	listoftables.put(newname, temporarystore);
+    	
+    }
+  
+    public void renameColumn(String oldname, String newname) {
+  	
+    	LinkedList<String> temporarystore = table.get(oldname);	
+    	table.remove(oldname);	
+  		table.put(newname, temporarystore);
+  	
+    }
+  
 	      public void createTableCols() {
                  boolean check1 = true; // checks if you want to stop adding rows and values
 			     boolean check2 = true; // checks if you want to change row
@@ -50,11 +92,11 @@ public class Table {
 
 
 
-		public  Table searchTable() {
+		public static Table searchTable() {
    			boolean workwithtable = true; // Work with a table
    			Table tableobj = null; //Work table
    			String name;
-   			System.out.println("Give the table's name to add attributes or EXIT to exit :");
+   			System.out.println("Give the table's name or EXIT to exit :");
    			while(workwithtable){
    				name = sc.nextLine();	//read the table's name
 
@@ -116,12 +158,12 @@ public class Table {
 	}
 
 
-		
+
 	public void setTable(String name) {
 		listoftables.put(name, this);
    }
 
-    public Table getTable(String name) {
+    public static Table getTable(String name) {
 		if(listoftables.containsKey(name)) {
 			return  listoftables.get(name);
 	 } else {
@@ -166,6 +208,8 @@ public class Table {
 				x++;
 				}
 			}
+
+}
 
 
 
