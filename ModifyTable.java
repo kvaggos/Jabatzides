@@ -1,6 +1,5 @@
 import java.util.*;
 import java.io.*;
-import java.util.Scanner;
 
 public class ModifyTable {
 
@@ -21,8 +20,20 @@ public class ModifyTable {
 	
 	public void renameColumn(Table table){
 	
+			boolean x = true;
+			String oldname = null;
+			
+			while (x) {
 			System.out.println("Which column do you want to rename?");
-			String oldname = sc.nextLine();
+			oldname = sc.nextLine();
+			
+			if (table.table.containsKey(oldname)) {
+				x = false;
+			} else {
+			System.out.println("Column with name: "+ oldname + "does not exist. Try again.");	
+				}
+			
+			}
 		
 			System.out.println("Give the new name of the column");
 			String newname = sc.nextLine();
@@ -30,15 +41,61 @@ public class ModifyTable {
 			table.renameColumn(oldname, newname);
 			System.out.println("Column with name: "+ oldname +", has been renamed to: "+ newname);
 	
+		}	
+	
+	
+	public void changeValue(Table table) {
+		
+		boolean x = true;
+		String colname = null;
+		
+		while (x) {
+		System.out.println("In which column is the value you want to change?");
+		colname = sc.nextLine();
+		
+		if (table.table.containsKey(colname)) {
+			x = false;
+		} else {
+		System.out.println("Column with name: "+ colname + "does not exist. Try again.");	
+			}
+		
 		}
+		
+		boolean y = true;
+		String oldvalue = null;
+		LinkedList<String> temporarystore = new LinkedList<String>();	
+		
+		while (y) {
+			
+			System.out.println("Which value do you want to change?");
+			oldvalue = sc.nextLine();
+			temporarystore = table.table.get(colname);
+			
+			if (temporarystore.contains(oldvalue)) {
+				y = false;
+			} else {
+			System.out.println("Value: "+ oldvalue + "does not exist. Try again.");	
+				}
+			
+			}
+		
+		System.out.println("Give new value for "+ oldvalue );
+		String newvalue = sc.nextLine();
+		
+		temporarystore.set(temporarystore.indexOf(oldvalue), newvalue);
+		table.table.put(colname, temporarystore);
+	}
 	
 	public void getModifyMenu(){
 		System.out.println("    Make a choice: ");
 		System.out.println("1. Rename a table");
 		System.out.println("2. Rename a column ");
-		System.out.println("3. Change the values of a column");
+		System.out.println("3. Change value of a column");
 		System.out.println("4. Exit Modify attributes from a table");
 	}
+	
+	
+
 	
 	public void RemoveTable(){
 		
@@ -58,7 +115,7 @@ public class ModifyTable {
 		 		 }else if (x == 2){
 		 			renameColumn(table);
 		 		}else if (x == 3){
-		 			//deleteColumn(table);
+		 			changeValue(table);
 		 		}else if (x == 4){
 		 			endcheck = false;
 		 		} else {
