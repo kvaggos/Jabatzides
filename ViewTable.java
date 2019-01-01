@@ -234,9 +234,8 @@ public class ViewTable {
 		Comparators c = new Comparators();
                 String colby;
                 LinkedHashMap<String, LinkedList<String>>  ss = myTable.createCopy1();
-                ss = myTable.createCopy1();
-		 System.out.println("Input the name of a numeric or a character Column to sort the table by. Press enter to exit.");
-	         colby = checkColumn(myTable);
+		System.out.println("Input the name of a numeric or a character Column to sort the table by. Press enter to exit.");
+	        colby = checkColumn(myTable);
 	           if(colby.equals("")) {return;}
 	              System.out.println("Would you like the sorting to be done in (A)scending or (D)escending order?");
 	              resp = s2.nextLine();
