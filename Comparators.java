@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Comparators {
-    int j;
+    int j = 0;
     ArrayList<Integer> sortingMethodReturns = new ArrayList<Integer>();
 
 	Comparator<String> getAttribute1Comparator() {
@@ -36,7 +36,10 @@ public class Comparators {
 				return returning;
 	          }
 	     };
-   }
+       }
+	 public void setJ() {
+		this.j = 0;
+	 }
          Comparator<String> getAttribute2Comparator() {
 		        return new Comparator<String>() {
 					@Override
@@ -47,17 +50,17 @@ public class Comparators {
 		             }
 
 	            };
- }
-   		 Comparator<String> getAttribute3Comparator() {
+       }
+          Comparator<String> getAttribute3Comparator() {
    		        return new Comparator<String>() {
-   					@Override
-   				    public int compare(String lhs, String rhs) {
-                      int returning = sortingMethodReturns.get(j);
-                      j++;
-                      return returning;
+   			    @Override
+   		            public int compare(String lhs, String rhs) {
+                                int returning = sortingMethodReturns.get(j);
+                                j++;
+                                return returning;
    		            }
 
    		        };
-         }
+          }
 
 }
