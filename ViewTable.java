@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.*;
+
 
 //class responsible for printing the table, as well as printing table based on conditions, viewing stats and viewing table sorted by a column.
 public class ViewTable {
@@ -207,21 +207,21 @@ public class ViewTable {
 		 if(myTable.getType(colName).contains("2") || colName.equals(myTable.getPk())) {//no duplicates so break the search when the fist matching value is found
 			int i = myTable.findUnique(colName, conVal, srcSet, coltyp);
 			 if(colComp.equals("=")) {
-			  if(i >= 0) {
+			   if(i >= 0) {
 				 resSet.add(i);
 				 return false;
-			   } else {
+			    } else {
 				 return false;
-		       }
-	      }else if(colComp.equals("#")) {
-	        	if(i >= 0) {
-	        		resSet.addAll(srcSet);
-	        		resSet.remove(i);
-	        	} else {
-					resSet.addAll(srcSet);
-				}
-				return false;
-		      }
+		           }
+	                  } else if(colComp.equals("#")) {
+	        	      if(i >= 0) {
+	        	         resSet.addAll(srcSet);
+	        	         resSet.remove(i);
+	        	      } else {
+		                  resSet.addAll(srcSet);
+			      }
+		         return false;
+		        }
 	       }
 		  return true;
 	 }
