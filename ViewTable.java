@@ -272,6 +272,129 @@ public class ViewTable {
 	   	mainList.addAll(myTable.getKeySet());
 	    myTable.viewTable(a,mainList, l);
    }
+	
+   //this method outputs the stats of a given numeric column.
+   public void viewStats(Table myTable) {
+           if(myTable.getRowNo() == 0) {
+	 	 System.out.println("Please first add some rows to access this functionality");
+	 	  return;
+	   }
+     String max, min;
+     boolean s = true;
+     String exit = "or press enter to exit";
+     Comparators c = new Comparators();
+      while(s) {
+       System.out.println("Press 1 to view max, 2 to view min, 3 to view sum, 4 to view average, any other key to exit");
+       resp = s2.nextLine();
+         if(resp.equals("1")) {
+	       getMax(exit, myTable);
+	 }else if(resp.equals("2")) {
+	       getMin(exit, myTable);
+         }else if(resp.equals("3")) {
+	       printSum(exit, myTable);
+         }else if(resp.equals("4")) {
+	       getAvg(exit, myTable);
+        } else {
+	       s = false;
+        }
+     }
+   }
+
+   public void getAvg(String exit, Table myTable) {
+	  System.out.println("Select a numeric column to view the average " + exit);
+	  resp = checkColumn(myTable);
+	   if(!resp.trim().isEmpty()) {
+	           double avg =  getSum(myTable.getList(resp)) / myTable.getRowNo();
+		   System.out.printf("The average of column " + resp + " is %.2f\n",avg);
+		   System.out.println();
+	   }
+  }
+
+   public void printSum(String exit, Table myTable) {
+	     System.out.println("Select a numeric column to view the sum " + exit);
+	   	 resp = checkColumn(myTable);
+	      if(!resp.trim().isEmpty()) {
+	         double sum = getSum(myTable.getList(resp));
+	   		   if(sum % 1 == 0) {
+	   		     sum = (int)sum;
+	   	       }
+	         System.out.println("The sum of column " + resp + " is " + sum);
+          }
+   }
+
+   public void getMin(String exit, Table myTable) {
+	   String min;
+	   Comparators c = new Comparators();
+	   System.out.println("Select a numeric column to view the min value " + exit);
+	   resp = checkColumn(myTable);
+	     if(!resp.trim().isEmpty()) {
+		if(checkNulls(myTable.getList(resp))) {
+			  LinkedList<String> l = myTable.getList(resp);
+			  l.removeAll(Collections.singleton("null"));
+	   		  min = Collections.min(l,c.getAttribute1Comparator());
+		          System.out.println("The min value of column " + resp + " is " + min);
+	         } else {
+			  System.out.println("Cannot perform this action. Null values only.");
+		 }
+	      }
+   }
+   
+
+   public void getMax(String exit, Table myTable) {
+	  String max;
+	  Comparators c = new Comparators();
+	  System.out.println("Select a numeric column to view the max value " + exit);
+	  resp = checkColumn(myTable);
+	   	 if(!resp.trim().isEmpty()) {
+		   if(checkNulls(myTable.getList(resp))) { 
+			 LinkedList<String> l = myTable.getList(resp);
+			 l.removeAll(Collections.singleton("null"));
+	   	         max = Collections.max(l,c.getAttribute1Comparator());
+		         System.out.println("The max value of column " + resp + " is " + max);
+	            } else {
+			 System.out.println("Cannot perform this action. Null values only.");
+		   }
+	     }
+   }
+   //this method checks to see if a column is consisted only from null values. If so then the above functionalities are meaningless.
+   public boolean checkNulls(LinkedList<String> l) {
+	   boolean ss = false;
+	     for(String s : l) {
+		   if(!s.equals("null")) {
+		     ss = true;
+		   }
+	     }
+	   return ss;
+   }
+   //this method is used to return a val column name so to begin the above functionalities
+    public String checkColumn(Table myTable) {
+		 boolean a = true;
+		   while(a) {
+			   resp = s2.nextLine();
+			   if(resp.trim().isEmpty()) {
+				 a = false;
+			   }else if(!myTable.containsKey(resp)) {
+			       System.out.println("Column " + resp + " doesnt exist");
+			   } else if(!myTable.getType(resp).contains("N") && !myTable.getType(resp).contains("C")) {
+				System.out.println("Column " + resp + " is not numeric or character");
+		       } else {
+				  a = false;
+			    }
+	      }
+	      return resp;
+	 }
+
+
+      public double getSum(LinkedList<String> l) {
+		 double sum = 0.0;
+		 for(String s : l) {
+			 try {
+			  sum += Double.parseDouble(s);
+		         }catch(NumberFormatException e) {
+		         }
+	          }
+		 return sum;
+	   }
    
 	  public void getMenu() {
 
