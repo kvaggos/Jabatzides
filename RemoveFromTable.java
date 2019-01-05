@@ -9,15 +9,50 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-
-
-
-
  public class RemoveFromTable {
 
 	Scanner sc = new Scanner(System.in);
     
-   
+       //method responsible for the deltetion of the chosen table. Goes back to main menu after this method ends.
+	public void deleteTable(Table table) {
+		String s = table.getName();
+		table.deleteWholeTable();
+		System.out.println("Table with name: " + s + ", has been removed");
+    }
+    //this method clears the table of all its rows. Only columns remain
+	public void clearTable(Table table) {
+		if(table.getRowNo() == 0) {
+			System.out.println("Please first add some rows.");
+			return;
+		}
+		table.clearValues();
+		System.out.println("Table with name:  "+ table.getName() + " , is empty now");
+    }
+    //method responsible for deleting a column from the table
+	public void deleteColumn(Table table) {
+		if(table.getKeySet() == null) {
+			System.out.println("Please first add some columns.");
+		}
+		boolean a = true;
+		String colname = "";
+		 while(a && table.getKeySet() != null) {
+		   System.out.println("Give the name of the column you want to delete or press enter to exit");
+		   colname = sc.nextLine();
+		    if(colname.equals("")) {
+			   a = false;
+		    } else if (table.isColumnDeleted(colname)) {
+			System.out.println("Column with name: " + table.getName() + ", has been removed");
+		    } else {
+			System.out.println("Column with name:" + colname + " does not exist");
+		   }
+	        }
+	     if(colname.equals(table.getPk())) { //if the selected column is PK make the appropriate changes.
+		   table.setPK("");
+		    if(table.getPKInc()) {
+				table.setPKInc(false);
+		    }
+	      }
+  }
     // delete one or more rows according to one or multiple conditions.
 	public void deleteRow(Table table){
 
