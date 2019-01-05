@@ -23,7 +23,7 @@ public class Table  {
 	private boolean PKInc = false;
         private Map<String, String> ColTypes = new HashMap<String, String>(); // maps columns with their types/constraints
         private static HashMap<String, Table> listoftables  = new HashMap<String, Table>(); // maps the name and the object instance, effectively storing the instance.
-	private Map<String, LinkedList<String> > table = new LinkedHashMap<String, LinkedList<String>>(); //TreeMap that contains the rows and the values of every table
+	private Map<String, LinkedList<String> > table = new LinkedHashMap<String, LinkedList<String>>(); //Map that contains the columns and the values of every table
         private LinkedList<String> list; //in the instances of the list the values of each column are stored.
 
 	public Table(String name){ //constructor
@@ -272,8 +272,106 @@ public class Table  {
 		 list12 = new LinkedList<String>(table.get(key));
          b.put(key, list12);
       }
-         return b;
-	 }
+         return b; 
+    }
+      //method that returns a list with the correct format for every column that is requested.
+     public ArrayList<String> findMaxLength(ArrayList<String> colList , int size, List<Integer> l ) {
+        //first find the max length of a value of a column.
+		int[] maxLengths = new int[size];
+		int s = -1;
+		   for(String col : colList) {
+	                 s++;
+		         maxLengths[s] = col.length();
+			    for(int i : l) {
+				maxLengths[s] = Math.max(maxLengths[s], table.get(col).get(i).length());
+			    }
+		    }
+         //then knowing the max length, create a list containing the correct format for each column.
+		 StringBuilder formatBuilder = new StringBuilder();
+		 ArrayList<String> maxF = new ArrayList<String>();
+		    for (int maxLength : maxLengths) {
+		       maxF.add(formatBuilder.append("%-").append(maxLength).append("s").toString());
+		       formatBuilder.setLength(0);
+                    }
+		 return maxF;
+    }
+
+   // method that dynamically outputs the table.
+   public void viewTable(LinkedHashMap<String, LinkedList<String>> a, ArrayList<String> colList, List<Integer> l) {
+	              if(a.keySet() == null) {
+			   System.out.println("No Data");
+			   return;
+		      }
+		    System.out.println();
+		    ArrayList<String> maxLengths = findMaxLength(colList, colList.size(), l); 
+		    int sum = 0;
+		      for (String s : maxLengths) {
+				int k = Integer.parseInt(s.substring(2,s.length() - 1)); // get the maxLength from the format.
+				sum += k; //sum of total lengths. Used to print the correct amount of --- later.
+		      }
+		     sum += (colList.size() - 1) * 3 + 1; //(colList.size() - 1) * 3  -> accounting for " | ". Plus 1 because at last column we only print "|" as seen below.
+		     int i = -1;
+			   for(String key : colList) { //printing the column names
+				 i++;
+			         System.out.format(maxLengths.get(i), key);
+			      if(i != colList.size() - 1) {
+			        System.out.print(" | ");
+			      } else {
+				System.out.print("|");
+		              }
+			   }
+			System.out.println();
+			ArrayList<Integer> crossPosition = new ArrayList<Integer>();
+			int h = -1;
+			int sum2 = 0;
+			  for(String f : maxLengths) {
+				h++;
+				 if(h != colList.size() - 1) { //finding the position where the crosses must be placed, where the | intersect.
+					 int kk = Integer.parseInt(f.substring(2,f.length() - 1)) + 2;
+					 sum2 += kk;
+				         crossPosition.add(sum2);
+				         sum2++;
+				 } else {
+				        crossPosition.add(sum2 + Integer.parseInt(f.substring(2,f.length() - 1)) + 1);
+			         } 
+			  }
+			 int d = 0;
+			 for(int ii = 1;ii<= sum;ii++) {
+				  if(ii != crossPosition.get(d)) {
+				    System.out.print("-");
+				   } else {
+				    System.out.print("+");
+				    d++;
+			           }
+			 }
+		      System.out.println();
+                        for(int k : l){
+			    int p = -1;
+ 			     for(String key2 : colList){ //printing the values row by row.
+					 p++;
+ 					 System.out.format(maxLengths.get(p),  a.get(key2).get(k));
+ 					  if(p != colList.size() - 1) {
+					     System.out.print(" | ");
+					  } else {
+					    System.out.print("|");
+		                          }
+ 			     }
+ 		           System.out.println();
+ 		           d = 0;
+		             for(int ii = 1;ii<= sum;ii++) {
+				 if(ii != crossPosition.get(d)) {
+				      System.out.print("-");
+				 } else {
+				    System.out.print("+");
+				    d++;
+				 }
+			     }
+		     System.out.println();
+		   }
+            System.out.println();
+    }
+
+	
 }
 
 
