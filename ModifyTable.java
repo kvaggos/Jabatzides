@@ -14,7 +14,50 @@ import java.util.stream.Collectors;
 public class ModifyTable {
 
   Scanner sc = new Scanner(System.in);
-   
+
+	
+    // this method changes the name of a table
+	public void renameTable(Table table){
+		String oldname = table.getName();
+		System.out.println("Give the new name of the table");
+		String newname = sc.nextLine();
+		 while(newname.trim().isEmpty() || oldname.equals(newname)) {
+			System.out.println("Table name cant be an empty line or the same as before. Please try again");
+			newname = sc.nextLine();
+		 }
+		Table temp = Table.getTable(oldname);
+		table.deleteWholeTable();
+		temp.setName(newname);
+		temp.setTable();
+		System.out.println("Table with name: "+ oldname + ", has been renamed to: "+ newname);
+        }
+    //this method renames a column name and also keeps the order of the columns intact, as the user inputed them
+	public void renameColumn(Table table){
+		         if(table.getMappings() == 0) {
+				 System.out.println("Please first add some columns to access this functionality");
+			         return;
+			 }
+			boolean d = true;
+			String oldname = null;
+			System.out.println("Which column do you want to rename?");
+                          while(d) {
+			    oldname = sc.nextLine();
+			     if (table.containsKey(oldname)) {
+				  d = false;
+			     } else {
+			      System.out.println("Column with name: " + oldname + " does not exist. Try again.");
+			     }
+			  }
+			System.out.println("Give the new name of the column");
+			String newname = sc.nextLine();
+			 while(newname.trim().isEmpty()) {
+				System.out.println("Column name cant be an empty line. Please try again");
+				newname = sc.nextLine();
+		         }
+			table.renameColumn(oldname, newname);
+			System.out.println("Column with name: " + oldname + ", has been renamed to: " + newname);
+	 }
+
 
     //method used to change the values of a field of a column.
 	public void changeValue(Table table) {
