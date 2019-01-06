@@ -14,7 +14,7 @@ public class Comparators {
 		               double x=0,z=0;
 				    if(lhs.matches("-?\\d+")) {
 				       x = Integer.parseInt(lhs);
-		       	    }
+		       	            }
 				   if(lhs.matches("-?[0-9]*\\.?[0-9]*")) {
 						 x = Double.parseDouble(lhs);
 				   }
@@ -25,17 +25,23 @@ public class Comparators {
 					 z = Double.parseDouble(rhs);
 				  }
 				  int returning=0;
-				   if (x  < z) {
+				   if(lhs.equals("null") && rhs.equals("null")) {
+					  returning =  0;
+					} else if(lhs.equals("null") && !rhs.equals("null")) {
 					  returning = -1;
-				  } else if (x > z) {
-					  returning = 1;
-				  } else {
-				    returning =  0;
-				  }
-			    sortingMethodReturns.add(returning);
+				    } else if(!lhs.equals("null") && rhs.equals("null")) {
+						returning = 1;
+					} else if (x  < z) {
+					    returning = -1;
+				    } else if (x > z) {
+					    returning = 1;
+				    } else {
+				       returning =  0;
+				    }
+			        sortingMethodReturns.add(returning);
 				return returning;
-	          }
-	     };
+	                 }
+	     };    
        }
 	 public void setJ() {
 		this.j = 0;
@@ -44,10 +50,19 @@ public class Comparators {
 		        return new Comparator<String>() {
 					@Override
 					public int compare(String lhs, String rhs) {
-							int returning = lhs.compareTo(rhs);
-							sortingMethodReturns.add(returning);
-							return returning;
-		             }
+						      if(lhs.equals("null") && rhs.equals("null")) {
+							     returning =  0;
+						      } else if(lhs.equals("null") && !rhs.equals("null")) {
+							     returning = -1;
+						      } else if(!lhs.equals("null") && rhs.equals("null")) {
+							     returning = 1;
+					              } else {
+							     returning = lhs.compareTo(rhs);
+						     }					     
+					      int returning = lhs.compareTo(rhs);
+					      sortingMethodReturns.add(returning);
+					      return returning;
+		                       }
 
 	            };
        }
