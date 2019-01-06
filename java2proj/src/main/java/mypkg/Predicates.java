@@ -11,11 +11,11 @@ public class Predicates {
 	}
     //predicate used for character columns when the condition is ">"
 	public static Predicate<Integer> isGreater(LinkedList<String> l1, String colVal) {
-			return  (t) -> l1.get(t).compareTo(colVal) > 0;
+			return  (t) -> l1.get(t).compareTo(colVal) < 0;
 	}
     //predicate used for character columns when the condition is "<"
 	public static Predicate<Integer> isLesser(LinkedList<String> l1, String colVal) {
-			return  (t) -> l1.get(t).compareTo(colVal) < 0;
+			return  (t) -> l1.get(t).compareTo(colVal) > 0;
 	}
     //predicate used for numeric columns when the condition is "="
 	public static Predicate<Integer> isEqualsN(ArrayList<Double> l1, double colVal) {
