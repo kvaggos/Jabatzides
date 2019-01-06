@@ -27,17 +27,17 @@ public class Comparators {
 				  int returning=0;
 				   if(lhs.equals("null") && rhs.equals("null")) {
 					  returning =  0;
-					} else if(lhs.equals("null") && !rhs.equals("null")) {
+				   } else if(lhs.equals("null") && !rhs.equals("null")) {
 					  returning = -1;
-				    } else if(!lhs.equals("null") && rhs.equals("null")) {
+				   } else if(!lhs.equals("null") && rhs.equals("null")) {
 						returning = 1;
-					} else if (x  < z) {
+				   } else if (x  < z) {
 					    returning = -1;
-				    } else if (x > z) {
+				   } else if (x > z) {
 					    returning = 1;
-				    } else {
+				   } else {
 				       returning =  0;
-				    }
+				   }
 			        sortingMethodReturns.add(returning);
 				return returning;
 	                 }
