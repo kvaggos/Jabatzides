@@ -9,9 +9,9 @@ public class Comparators {
 
 	Comparator<String> getAttribute1Comparator() {
 	       return new Comparator<String>() {
-				@Override
+			    @Override
 			    public int compare(String lhs, String rhs) {
-		           double x=0,z=0;
+		               double x=0,z=0;
 				    if(lhs.matches("-?\\d+")) {
 				       x = Integer.parseInt(lhs);
 		       	    }
