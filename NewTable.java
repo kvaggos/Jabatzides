@@ -7,14 +7,14 @@ public class NewTable {
     
 	static Scanner sc = new Scanner(System.in);
 
-	 public void createTable() {
-       Table tableobj = getNewTable(); // get the object of the newlyformed table
-        if(tableobj == null) { // if the object is null that means the user opted to exit the functionality. See below.
-			     return;
-		    }
-		setPrimaryKey(tableobj); //first our database sets the primary key of each table.
-		createTableCols(tableobj); //finally the columns are created along with their types and possible constraints.
-	 }
+    public void createTable() {
+        Table tableobj = getNewTable(); // get the object of the newlyformed table
+             if(tableobj == null) { // if the object is null that means the user opted to exit the functionality. See below.
+		 return;
+	     }
+        setPrimaryKey(tableobj); //first our database sets the primary key of each table.
+	createTableCols(tableobj); //finally the columns are created along with their types and possible constraints.
+     }
       //returns the object with only the tables name set or null if the user wants to exit this functionality.
     public Table getNewTable() {
 			  boolean checkexistingtable = true; // checks if the table name is available
