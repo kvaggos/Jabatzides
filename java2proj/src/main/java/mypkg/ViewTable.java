@@ -97,7 +97,7 @@ public class ViewTable {
 				resp = s2.nextLine();
 				return;
 			 }
-			System.out.println("Would you like to add more conditions?[Y/N] ");
+			System.out.println("Would you like to add more conditions?[Y/any other key]");
 			resp = s2.nextLine();
 			 if (!resp.equalsIgnoreCase("y")) {
 				b = false;
