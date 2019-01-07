@@ -235,7 +235,7 @@ public class ViewTable {
                 String colby;
                 LinkedHashMap<String, LinkedList<String>>  ss = myTable.createCopy1();
 		System.out.println("Input the name of a numeric or a character Column to sort the table by. Press enter to exit.");
-	        colby = checkColumn(myTable);
+	        colby = checkColumn(myTable, "CN");
 	           if(colby.trim().isEmpty()) {return;}
 	              System.out.println("Would you like the sorting to be done in (A)scending or (D)escending order?");
 	              resp = s2.nextLine();
@@ -302,7 +302,7 @@ public class ViewTable {
 
    public void getAvg(String exit, Table myTable) {
 	  System.out.println("Select a numeric column to view the average " + exit);
-	  resp = checkColumn(myTable);
+	  resp = checkColumn(myTable, "N");
 	   if(!resp.trim().isEmpty()) {
 	           double avg =  getSum(myTable.getList(resp)) / myTable.getRowNo();
 		   System.out.printf("The average of column " + resp + " is %.2f\n",avg);
@@ -312,7 +312,7 @@ public class ViewTable {
 
    public void printSum(String exit, Table myTable) {
 	     System.out.println("Select a numeric column to view the sum " + exit);
-	   	 resp = checkColumn(myTable);
+	   	 resp = checkColumn(myTable, "N");
 	      if(!resp.trim().isEmpty()) {
 	         double sum = getSum(myTable.getList(resp));
 	   		   if(sum % 1 == 0) {
@@ -326,7 +326,7 @@ public class ViewTable {
 	   String min;
 	   Comparators c = new Comparators();
 	   System.out.println("Select a numeric column to view the min value " + exit);
-	   resp = checkColumn(myTable);
+	   resp = checkColumn(myTable, "N");
 	     if(!resp.trim().isEmpty()) {
 		if(checkNulls(myTable.getList(resp))) {
 			  LinkedList<String> l = myTable.getList(resp);
@@ -344,7 +344,7 @@ public class ViewTable {
 	  String max;
 	  Comparators c = new Comparators();
 	  System.out.println("Select a numeric column to view the max value " + exit);
-	  resp = checkColumn(myTable);
+	  resp = checkColumn(myTable, "N");
 	   	 if(!resp.trim().isEmpty()) {
 		   if(checkNulls(myTable.getList(resp))) { 
 			 LinkedList<String> l = myTable.getList(resp);
@@ -367,7 +367,7 @@ public class ViewTable {
 	   return ss;
    }
    //this method is used to return a val column name so to begin the above functionalities
-    public String checkColumn(Table myTable) {
+    public String checkColumn(Table myTable, String flag) {
 		 boolean a = true;
 		   while(a) {
 			   resp = s2.nextLine();
