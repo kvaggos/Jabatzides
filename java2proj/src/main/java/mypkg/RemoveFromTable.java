@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 		    if(colname.equals("")) {
 			   a = false;
 		    } else if (table.isColumnDeleted(colname)) {
-			System.out.println("Column with name: " + table.getName() + ", has been removed");
+			System.out.println("Column with name: " + colname + ", has been removed");
 		    } else {
 			System.out.println("Column with name:" + colname + " does not exist");
 		   }
