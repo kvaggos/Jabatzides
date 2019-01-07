@@ -375,13 +375,21 @@ public class ViewTable {
 				 a = false;
 			   }else if(!myTable.containsKey(resp)) {
 			       System.out.println("Column " + resp + " doesnt exist");
-			   } else if(!myTable.getType(resp).contains("N") && !myTable.getType(resp).contains("C")) {
-				System.out.println("Column " + resp + " is not numeric or character");
-		       } else {
-				  a = false;
-			    }
-	      }
-	      return resp;
+			   } else if(flag.equals("N")) {
+				   if(!myTable.getType(resp).contains("N")) {
+				      System.out.println("Invalid column for the operation. Please try again.");
+				    } else {
+				      a = false;
+				   } 
+			   } else if(flag.equals("CN")) {
+				 if(myTable.getType(resp).contains("S")) {
+				      System.out.println("Invalid column for the operation. Please try again.");
+				  } else {
+				      a = false;
+				  }
+	                    }
+		   }
+	     return resp;
 	 }
 
 
