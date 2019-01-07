@@ -112,7 +112,7 @@ public class ViewTable {
 		System.out.println("Select which columns you would like to view. Press enter to exit");
 		 while(a && s < myTable.getMappings()) {
 		   resp = s2.nextLine();
-			 if(resp.equals("")) {
+			 if(resp.trim().isEmpty()) {
 				a = false;
 			 } else if(myTable.containsKey(resp) && !colList.contains(resp)) {
 				s++;
