@@ -54,6 +54,7 @@ public class Table  {
 	   for (String key : table.keySet()) {
 		     table.get(key).clear();
           }
+	setRows(0); 
      }
     //loops through the table's columns and deletes a given row
 	public void deleteRow(int i) {
