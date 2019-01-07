@@ -114,12 +114,12 @@ public class ViewTable {
 		   resp = s2.nextLine();
 			 if(resp.equals("")) {
 				a = false;
-			 } else if(myTable.containsKey(resp)) {
+			 } else if(myTable.containsKey(resp) && !colList.contains(resp)) {
 				s++;
 				colList.add(resp);
 			 } else {
 			    System.out.println("The column name does not exist");
-			}
+			 }
 		 }
 		 return colList;
         }
