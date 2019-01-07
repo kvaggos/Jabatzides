@@ -50,6 +50,7 @@ public class Comparators {
 		        return new Comparator<String>() {
 					@Override
 					public int compare(String lhs, String rhs) {
+					     int returning = 0;
 						      if(lhs.equals("null") && rhs.equals("null")) {
 							     returning =  0;
 						      } else if(lhs.equals("null") && !rhs.equals("null")) {
@@ -59,7 +60,7 @@ public class Comparators {
 					              } else {
 							     returning = lhs.compareTo(rhs);
 						     }					     
-					      int returning = lhs.compareTo(rhs);
+					      returning = lhs.compareTo(rhs);
 					      sortingMethodReturns.add(returning);
 					      return returning;
 		                       }
