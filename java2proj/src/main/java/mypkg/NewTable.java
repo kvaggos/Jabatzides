@@ -115,7 +115,7 @@ public class NewTable {
 			   resp = sc.nextLine();
 			      if(!(resp.equals("1") || resp.equals("2")) && !resp.equals("")) {
 				      System.out.println("Invalid input. Please try again");
-			      } else if(tableobj.getType(colname).contains(resp)) {
+			      } else if(tableobj.getType(colname).contains(resp) && !resp.trim().isEmpty()) {
 				   System.out.println("Constraint already inputed.Please try again");
 			      } else {			      
 				       s++;
