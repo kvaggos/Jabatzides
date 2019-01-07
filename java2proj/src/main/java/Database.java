@@ -6,7 +6,7 @@ import mypkg.ViewTable;
 import mypkg.RemoveFromTable;
 import mypkg.ModifyTable;
 
-public class DataBase {
+public class Database {
 	public static void main(String[] args) {
 		String x;
 		Scanner sc = new Scanner(System.in);
