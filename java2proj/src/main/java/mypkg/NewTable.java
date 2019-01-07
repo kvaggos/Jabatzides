@@ -115,7 +115,9 @@ public class NewTable {
 			   resp = sc.nextLine();
 			      if(!(resp.equals("1") || resp.equals("2")) && !resp.equals("")) {
 				      System.out.println("Invalid input. Please try again");
-			      } else {
+			      } else if(tableobj.getType(colname).contains(resp)) {
+				   System.out.println("Constraint already inputed.Please try again");
+			      } else {			      
 				       s++;
 				       String s1 = tableobj.getType(colname) + resp; //create a string that holds the type and the constraints of the column.
 				       tableobj.setType(colname, s1);
