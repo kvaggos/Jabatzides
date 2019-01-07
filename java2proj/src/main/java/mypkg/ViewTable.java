@@ -244,13 +244,13 @@ public class ViewTable {
 	                    resp = s2.nextLine();
 		        }
                    if(myTable.getType(colby).equals("N")) {
-		     if(!resp.equalsIgnoreCase("d")) {
+		     if(!resp.toLowerCase().equals("d")) {
 		        Collections.sort(ss.get(colby), c.getAttribute1Comparator());
 		      } else {
 		         Collections.sort(ss.get(colby), Collections.reverseOrder(c.getAttribute1Comparator()));
 		      }
 		   } else {
-			 if(resp.equalsIgnoreCase("d")) {
+			 if(resp.toLowerCase.equals("d")) {
 				  Collections.sort(ss.get(colby), c.getAttribute2Comparator());
 			  } else {
 		                Collections.sort(ss.get(colby), Collections.reverseOrder(c.getAttribute2Comparator()));
