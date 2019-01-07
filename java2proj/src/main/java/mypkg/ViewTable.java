@@ -250,7 +250,7 @@ public class ViewTable {
 		         Collections.sort(ss.get(colby), Collections.reverseOrder(c.getAttribute1Comparator()));
 		      }
 		   } else {
-			 if(resp.toLowerCase.equals("d")) {
+			 if(resp.toLowerCase().equals("d")) {
 				  Collections.sort(ss.get(colby), c.getAttribute2Comparator());
 			  } else {
 		                Collections.sort(ss.get(colby), Collections.reverseOrder(c.getAttribute2Comparator()));
