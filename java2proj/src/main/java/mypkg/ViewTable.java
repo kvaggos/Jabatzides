@@ -236,7 +236,7 @@ public class ViewTable {
                 LinkedHashMap<String, LinkedList<String>>  ss = myTable.createCopy1();
 		System.out.println("Input the name of a numeric or a character Column to sort the table by. Press enter to exit.");
 	        colby = checkColumn(myTable);
-	           if(colby.equals("")) {return;}
+	           if(colby.trim().isEmpty()) {return;}
 	              System.out.println("Would you like the sorting to be done in (A)scending or (D)escending order?");
 	              resp = s2.nextLine();
 	                while(!resp.equalsIgnoreCase("a") && !resp.equalsIgnoreCase("d")) {
