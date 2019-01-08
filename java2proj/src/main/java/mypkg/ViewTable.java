@@ -266,6 +266,10 @@ public class ViewTable {
    }
    //this method is called to output the whole table, creating the necessary arguments to give to the viewTable method.
    public void printTable(Table myTable, LinkedHashMap<String, LinkedList<String>> a) {
+	   if(myTable.getKeySet().size() == 0) {
+	      System.out.println("Please first add some columns");
+	      return;
+	    }
 	    int s = myTable.getRowNo();
 	    List<Integer> l = IntStream.rangeClosed(0, s - 1).boxed().collect(Collectors.toList());
 	    ArrayList<String> mainList = new ArrayList<String>();
