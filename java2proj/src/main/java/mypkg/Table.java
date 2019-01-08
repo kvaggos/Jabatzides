@@ -64,6 +64,13 @@ public class Table  {
                    String key = entry.getKey();
                    table.get(key).remove(i);
 	          }
+		   if(getPKInc()){
+			int s = 0;
+			  for(int l = 0;l<table.get(getPk()).size() ;l++) {
+			  	s++;
+			  	table.get(getPk()).set(l,Integer.toString(s));		   
+			   }
+		 }	
         }
      //updates a value of a given column with the new given value
      public void updateRow(int i, String colName, String newValue) {
