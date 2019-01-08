@@ -320,9 +320,6 @@ public class ViewTable {
 	      if(!resp.trim().isEmpty()) {
 		if(checkNulls(myTable.getList(resp))) {   
 	         double sum = getSum(myTable.getList(resp));
-	   		   if(sum % 1 == 0) {
-	   		     sum = (int)sum;
-	   	       }
 	         System.out.println("The sum of column " + resp + " is " + sum);
                } else {
 		System.out.println("Cannot perform this action. Null values only."); 
