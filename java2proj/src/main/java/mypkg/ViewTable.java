@@ -118,7 +118,7 @@ public class ViewTable {
 				s++;
 				colList.add(resp);
 			 } else {
-			    System.out.println("The column name does not exist");
+			    System.out.println("The column name does not exist, or you have already selected it");
 			 }
 		 }
 		 return colList;
