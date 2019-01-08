@@ -52,6 +52,9 @@ import java.util.stream.Collectors;
 		    }
 	          }
 		 }
+            if(table.getKeySet().size() == 0) {
+	        table.setRows(0);
+            }
   }
     // delete one or more rows according to one or multiple conditions.
 	public void deleteRow(Table table){
