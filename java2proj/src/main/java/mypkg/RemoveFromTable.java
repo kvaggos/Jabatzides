@@ -30,12 +30,12 @@ import java.util.stream.Collectors;
     }
     //method responsible for deleting a column from the table
 	public void deleteColumn(Table table) {
-		if(table.getKeySet() == null) {
+		if(table.getKeySet().size() == 0) {
 			System.out.println("Please first add some columns.");
 		}
 		boolean a = true;
 		String colname = "";
-		 while(a && table.getKeySet() != null) {
+		 while(a) {
 		   System.out.println("Give the name of the column you want to delete or press enter to exit");
 		   colname = sc.nextLine();
 		    if(colname.equals("")) {
@@ -45,18 +45,18 @@ import java.util.stream.Collectors;
 		    } else {
 			System.out.println("Column with name:" + colname + " does not exist");
 		   }
-	        }
-	     if(colname.equals(table.getPk())) { //if the selected column is PK make the appropriate changes.
+	          if(colname.equals(table.getPk())) { //if the selected column is PK make the appropriate changes.
 		   table.setPK("");
 		    if(table.getPKInc()) {
 				table.setPKInc(false);
 		    }
-	      }
+	          }
+		 }
   }
     // delete one or more rows according to one or multiple conditions.
 	public void deleteRow(Table table){
 
-		if(table.getRowNo() == 0) { // no rows, no reason for this functionality to start
+		if(table.getRowNo() == 0 || table.getKeySet().size() == 0) { // no rows, no reason for this functionality to start
 			System.out.println("Please first add some rows to access this functionality");
 		    return;
 		 }
