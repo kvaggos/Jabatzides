@@ -50,8 +50,8 @@ public class ModifyTable {
 			  }
 			System.out.println("Give the new name of the column");
 			String newname = sc.nextLine();
-			 while(newname.trim().isEmpty() || newname.equals(oldname)) {
-				System.out.println("Column name cant be an empty line or the same as before. Please try again");
+			 while(newname.trim().isEmpty() || newname.equals(oldname) || table.containsKey(newname)) {
+				System.out.println("Column name cant be an empty line or the same as before nor can it already exist. Please try again");
 				newname = sc.nextLine();
 		         }
 			table.renameColumn(oldname, newname);
