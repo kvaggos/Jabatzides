@@ -8,10 +8,6 @@ import java.util.Scanner;
 
 // class responsible for adding new rows and columns after table creation.
 public class Add2Table {
-      if(myTable.getKeySet().size() == 0) {
-         System.out.println("Please add some column first");
-	 return;
-       }
 	Scanner s2 = new Scanner(System.in);
 
 	public  void addAtt2Table() {
@@ -41,7 +37,10 @@ public class Add2Table {
     // method responsible for adding rows to the selected table.
     //This method loops over the the table and asks the user for an inpur for every column, then asks if the user wants to continue or not and acts accordingly
 	public void addRows(Table myTable) {
-
+           if(myTable.getKeySet().size() == 0) {
+            System.out.println("Please add some column first");
+	     return;
+            }
 			String myval;
 			String coltyp;
 			String key;
