@@ -67,13 +67,14 @@ public class ModifyTable {
 	        }
 		boolean x = true;
 		String colname = "";
+		System.out.println("In which column is the value you want to change?");
 		 while (x) {
-		   System.out.println("In which column is the value you want to change?");
-		   colname = sc.nextLine();
-		    if(table.containsKey(colname)) {
-			  x = false;
-		    } else {
-		     System.out.println("Column with name: "+ colname + " does not exist. Try again.");
+		    if(colname.equals(table.getPk()) && table.getPKInc()) {
+			System.out.println("PK is incremental. Values cannot be changed.");
+		    } else if(table.containsKey(colname)) {
+			x = false;
+		    } else {				
+		       System.out.println("Column with name: "+ colname + " does not exist. Try again.");
 		    }
 		 }
 		 String myval = "";
