@@ -304,22 +304,30 @@ public class ViewTable {
 	  System.out.println("Select a numeric column to view the average " + exit);
 	  resp = checkColumn(myTable, "N");
 	   if(!resp.trim().isEmpty()) {
+		 if(checkNulls(myTable.getList(resp))) {
 	           double avg =  getSum(myTable.getList(resp)) / myTable.getRowNo();
 		   System.out.printf("The average of column " + resp + " is %.2f\n",avg);
 		   System.out.println();
-	   }
+	   } else {
+	        System.out.println("Cannot perform this action. Null values only.");  
+          } 
+	 } 
   }
 
    public void printSum(String exit, Table myTable) {
 	     System.out.println("Select a numeric column to view the sum " + exit);
 	   	 resp = checkColumn(myTable, "N");
 	      if(!resp.trim().isEmpty()) {
+		if(checkNulls(myTable.getList(resp))) {   
 	         double sum = getSum(myTable.getList(resp));
 	   		   if(sum % 1 == 0) {
 	   		     sum = (int)sum;
 	   	       }
 	         System.out.println("The sum of column " + resp + " is " + sum);
-          }
+               } else {
+		System.out.println("Cannot perform this action. Null values only."); 
+	       }
+	      }
    }
 
    public void getMin(String exit, Table myTable) {
