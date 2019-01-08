@@ -8,7 +8,10 @@ import java.util.Scanner;
 
 // class responsible for adding new rows and columns after table creation.
 public class Add2Table {
-
+      if(myTable.getKeySet().size() == 0) {
+         System.out.println("Please add some column first");
+	 return;
+       }
 	Scanner s2 = new Scanner(System.in);
 
 	public  void addAtt2Table() {
