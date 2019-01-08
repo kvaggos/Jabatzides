@@ -69,6 +69,7 @@ public class ModifyTable {
 		String colname = "";
 		System.out.println("In which column is the value you want to change?");
 		 while (x) {
+		    colname = sc.nextLine();
 		    if(colname.equals(table.getPk()) && table.getPKInc()) {
 			System.out.println("PK is incremental. Values cannot be changed.");
 		    } else if(table.containsKey(colname)) {
