@@ -243,7 +243,7 @@ public class ViewTable {
 	                    System.out.println("Invalid input. Please try again");
 	                    resp = s2.nextLine();
 		        }
-                   if(myTable.getType(colby).equals("N")) {
+                   if(myTable.getType(colby).contains("N")) {
 		     if(resp.toLowerCase().equals("a")) {
 		        Collections.sort(ss.get(colby), c.getAttribute1Comparator());
 		      } else {
