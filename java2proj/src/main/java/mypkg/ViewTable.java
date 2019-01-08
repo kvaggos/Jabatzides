@@ -244,7 +244,7 @@ public class ViewTable {
 	                    resp = s2.nextLine();
 		        }
                    if(myTable.getType(colby).equals("N")) {
-		     if(!resp.toLowerCase().equals("d")) {
+		     if(resp.toLowerCase().equals("a")) {
 		        Collections.sort(ss.get(colby), c.getAttribute1Comparator());
 		      } else {
 		         Collections.sort(ss.get(colby), Collections.reverseOrder(c.getAttribute1Comparator()));
